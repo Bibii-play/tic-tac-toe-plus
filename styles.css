@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Space Mono', 'Noto Sans KR', monospace;
     background: white;
     color: #333;
     min-height: 100vh;
