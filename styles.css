@@ -5,14 +5,14 @@
 }
 
 @font-face {
-    font-family: 'SeoulNamsan';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
-    font-weight: normal;
+    font-family: 'Isamanru';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicLight.woff') format('woff');
+    font-weight: 300;
     font-display: swap;
 }
 
 body {
-    font-family: 'Space Mono', 'SeoulNamsan', monospace;
+    font-family: 'Space Mono', 'Isamanru', monospace;
     background: white;
     color: #333;
     min-height: 100vh;
