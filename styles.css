@@ -1,0 +1,546 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Space Mono', monospace;
+    background: white;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.header-icons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.rules-icon {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.rules-icon:hover {
+    background-color: #f0f0f0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+}
+
+.settings-dropdown {
+    position: relative;
+}
+
+.settings-icon {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.settings-icon:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    min-width: 180px;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.game-info {
+    margin-bottom: 30px;
+}
+
+.game-info p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+#current-player {
+    font-weight: 700;
+}
+
+#game-status {
+    color: #666;
+    min-height: 1.5rem;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+    margin-bottom: 30px;
+    background: #f0f0f0;
+    padding: 8px;
+    border-radius: 12px;
+}
+
+.cell {
+    aspect-ratio: 1;
+    background: white;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cell:hover {
+    background: #f8f8f8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.cell.taken {
+    cursor: not-allowed;
+}
+
+.cell.taken:hover {
+    background: white;
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cell.x {
+    color: #e74c3c;
+}
+
+.cell.o {
+    color: #3498db;
+}
+
+.cell.winning {
+    background: #2ecc71;
+    color: white;
+    animation: pulse 0.6s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.reset-btn {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.reset-btn:hover {
+    background: #555;
+    transform: translateY(-2px);
+}
+
+.game-over .cell {
+    cursor: not-allowed;
+}
+
+.game-over .cell:hover {
+    background: white;
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.mode-selector {
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.mode-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.mode-option:hover {
+    border-color: #333;
+}
+
+.mode-option input[type="radio"] {
+    margin: 0;
+}
+
+.mode-option input[type="radio"]:checked + span {
+    font-weight: 700;
+    color: #333;
+}
+
+.mode-option input[type="radio"]:checked {
+    accent-color: #333;
+}
+
+.mode-option span {
+    font-size: 0.9rem;
+}
+
+.number-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.number-btn {
+    width: 32px;
+    height: 32px;
+    border: 2px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.number-btn:hover {
+    border-color: #333;
+    background: #f8f8f8;
+}
+
+.number-btn.selected {
+    background: #333;
+    color: white;
+    border-color: #333;
+}
+
+.number-btn.used {
+    background: #f0f0f0;
+    color: #999;
+    cursor: not-allowed;
+    border-color: #ccc;
+}
+
+.number-btn.used:hover {
+    background: #f0f0f0;
+    border-color: #ccc;
+}
+
+.score-display {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+
+.score-display div {
+    font-weight: 700;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#phase-indicator {
+    font-size: 1rem;
+    color: #888;
+    font-weight: 400;
+}
+
+.cell.number-visible {
+    position: relative;
+    font-size: 1.5rem;
+    color: #999;
+}
+
+.cell .number {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.cell .symbol {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #e74c3c; /* Default to X color */
+}
+
+.cell .symbol.o {
+    color: #3498db;
+}
+
+.language-selector {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.language-option:hover {
+    border-color: #333;
+}
+
+.language-option input[type="radio"] {
+    margin: 0;
+}
+
+.language-option input[type="radio"]:checked + span {
+    font-weight: 700;
+    color: #333;
+}
+
+.language-option input[type="radio"]:checked {
+    accent-color: #333;
+}
+
+.language-option span {
+    font-size: 1.2rem;
+}
+
+.divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 5px 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.8rem;
+}
+
+.modal-content ol {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.modal-content li {
+    margin-bottom: 12px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.modal-content strong {
+    color: #333;
+}
+
+/* Play mode styles */
+.play-mode-selector {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.play-mode-title,
+.starting-player-title {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.play-mode-options,
+.starting-player-options {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.play-mode-option,
+.starting-player-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.play-mode-option:hover,
+.starting-player-option:hover {
+    border-color: #333;
+}
+
+.play-mode-option input[type="radio"],
+.starting-player-option input[type="radio"] {
+    margin: 0;
+}
+
+.play-mode-option input[type="radio"]:checked + span,
+.starting-player-option input[type="radio"]:checked + span {
+    font-weight: 700;
+    color: #333;
+}
+
+.play-mode-option input[type="radio"]:checked,
+.starting-player-option input[type="radio"]:checked {
+    accent-color: #333;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+
+    .settings-icon {
+        font-size: 1.2rem;
+        padding: 6px;
+    }
+
+    .dropdown-content {
+        min-width: 140px;
+        padding: 12px;
+    }
+    
+    .cell {
+        font-size: 2rem;
+    }
+    
+    .game-info p {
+        font-size: 1rem;
+    }
+    
+    .rules-icon {
+        font-size: 1.2rem;
+        padding: 6px;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        padding: 20px;
+        width: 95%;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .close {
+        font-size: 1.5rem;
+        right: 10px;
+        top: 10px;
+    }
+}

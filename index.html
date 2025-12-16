@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe+</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-icons">
+                <button class="rules-icon" id="rules-btn">📖</button>
+                <div class="settings-dropdown">
+                    <button class="settings-icon" id="settings-btn">⚙️</button>
+                </div>
+
+                <!-- Settings Modal -->
+                <div id="settings-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" id="settings-close">&times;</span>
+                        <h2 data-lang-key="settings">Settings</h2>
+                        <div class="dropdown-content" id="settings-content" style="display:block; position: static; box-shadow: none; border: none; padding: 0;">
+                            <div class="language-selector">
+                                <label class="language-option">
+                                    <input type="radio" name="language" value="en" checked>
+                                    <span>🇺🇸</span>
+                                </label>
+                                <label class="language-option">
+                                    <input type="radio" name="language" value="ko">
+                                    <span>🇰🇷</span>
+                                </label>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="mode-selector">
+                                <label class="mode-option">
+                                    <input type="radio" name="mode" value="normal" checked>
+                                    <span data-lang-key="normal-mode">Normal</span>
+                                    <div class="mode-desc" data-lang-key="mode-desc-normal" style="font-size:0.9rem; color:#666; margin-top:6px;">Numbers remain visible during symbol phase</div>
+                                </label>
+                                <label class="mode-option">
+                                    <input type="radio" name="mode" value="hard">
+                                    <span data-lang-key="hard-mode">Hard</span>
+                                    <div class="mode-desc" data-lang-key="mode-desc-hard" style="font-size:0.9rem; color:#666; margin-top:6px;">Numbers are hidden during symbol phase</div>
+                                </label>
+                            </div>
+                            <div class="divider"></div>
+                            <!-- Play Mode Selector -->
+                            <div class="play-mode-selector">
+                                <div class="play-mode-title" data-lang-key="play-mode">Play Mode</div>
+                                <div class="play-mode-options">
+                                    <label class="play-mode-option">
+                                        <input type="radio" name="play-mode" value="local" checked>
+                                        <span data-lang-key="play-local">Local</span>
+                                    </label>
+                                    <label class="play-mode-option">
+                                        <input type="radio" name="play-mode" value="computer">
+                                        <span data-lang-key="play-computer">Vs Computer</span>
+                                    </label>
+                                </div>
+                                <div class="starting-player-group">
+                                    <div class="starting-player-title" data-lang-key="starting-player">(For Vs Mode) Computer plays</div>
+                                    <div class="starting-player-options">
+                                        <label class="starting-player-option">
+                                            <input type="radio" name="starting-player" value="red" checked>
+                                            <span data-lang-key="blue-player">Blue</span>
+                                        </label>
+                                        <label class="starting-player-option">
+                                            <input type="radio" name="starting-player" value="blue">
+                                            <span data-lang-key="red-player">Red</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Play Mode Selector -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 id="game-title">Tic Tac Toe+</h1>
+        </div>
+        <div class="game-info">
+            <p id="current-player">Player X's turn</p>
+            <p id="game-status"></p>
+            <p id="phase-indicator">Number Placement Phase</p>
+        </div>
+        <div class="game-board" id="game-board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+        <button id="reset-btn" class="reset-btn">Reset Game</button>
+        <h4>Designed by Bibii</h4>
+    </div>
+    
+    <!-- Rules Modal -->
+    <div id="rules-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <h2 data-lang-key="rules-title">Game Rules</h2>
+            <div id="rules-content">
+                <ol>
+                    <li data-lang-key="rule-1">Each player takes turns placing numbers 1-9 on the board</li>
+                    <li data-lang-key="rule-2">After all numbers are placed, players take turns placing X and O symbols</li>
+                    <li data-lang-key="rule-3">The first symbol must be placed on the cell containing number 1</li>
+                    <li data-lang-key="rule-4">Win by getting three symbols in a row, column, or diagonal</li>
+                    <li data-lang-key="rule-5">If no one wins, the player with the highest sum of their numbers wins</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
